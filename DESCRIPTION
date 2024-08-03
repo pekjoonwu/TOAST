@@ -1,0 +1,16 @@
+Package: TOAST
+Type: Package
+Title: Three Outcome Approach for deciSion-making in clinical Trials (TOAST)
+Version: 1.0.0
+Author: Peijun Wu, Sheng Qiu, Wen-Chi Wu, Qing Li
+Maintainer: Peijun Wu <pekjoonw@umich.edu>
+Description: TOAST is an R package which unified three outcome decision framework
+  for one primary endpoint and two co-primary endpoints
+License: GPL (>= 3)
+Imports: 
+    survival (>= 3.7-0),
+    MASS (>= 7.3-61),
+    boot (>= 1.3-30)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
