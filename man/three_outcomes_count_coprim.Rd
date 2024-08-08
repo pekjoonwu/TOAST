@@ -19,14 +19,33 @@ three_outcomes_count_coprim(
   sample_size,
   independent = T,
   correlation = NULL,
+  strategy = "conservative",
   LRV_1,
   LRV_2,
   TV_1,
   TV_2,
+  FGR = 0.2,
+  FSR = 0.1,
   seed
 )
 }
 \arguments{
+\item{end_1_shape1}{Numeric. Shape parameter to generate Poisson rate for endpoints one from control group in the previous studies}
+
+\item{end_1_rate1}{Numeric. Rate parameter to generate Poisson rate for endpoints one from control group in the previous studies}
+
+\item{end_2_shape1}{Numeric. Shape parameter to generate Poisson rate for endpoints two from control group in the previous studies}
+
+\item{end_2_rate1}{Numeric. Rate parameter to generate Poisson rate for endpoints two from control group in the previous studies}
+
+\item{end_1_shape2}{Numeric. Shape parameter to generate Poisson rate for endpoints one from treatment group in the previous studies}
+
+\item{end_1_rate2}{Numeric. Rate parameter to generate Poisson rate for endpoints one from treatment group in the previous studies}
+
+\item{end_2_shape2}{Numeric. Shape parameter to generate Poisson rate for endpoints two from treatment group in the previous studies}
+
+\item{end_2_rate2}{Numeric. Rate parameter to generate Poisson rate for endpoints two from treatment group in the previous studies}
+
 \item{nrep}{Numeric. Replicates to evaluate the decision once}
 
 \item{NREP}{Numeric. Replicates to calculate the decision proportions}
@@ -37,6 +56,8 @@ three_outcomes_count_coprim(
 
 \item{correlation}{Numeric. correlation strength between two endpoints if they are correlated}
 
+\item{strategy}{Character. Two values: conservative or aggressive for decision criteria}
+
 \item{LRV_1}{Numeric. Lower reference value (treatment difference) for endpoint one}
 
 \item{LRV_2}{Numeric. Lower reference value (treatment difference) for endpoint two}
@@ -45,25 +66,32 @@ three_outcomes_count_coprim(
 
 \item{TV_2}{Numeric. Target value (treatment difference) for endpoint two}
 
+\item{FGR}{Numeric. False go risk level}
+
+\item{FSR}{Numeric. False stop risk level}
+
 \item{seed}{Numeric. Random seed}
-
-\item{end_1_m1}{Numeric. Sample mean for endpoints one from control group in the previous studies}
-
-\item{end_1_std1}{Numeric. Std for endpoints one from control group in the previous studies}
-
-\item{end_2_m1}{Numeric. Sample mean for endpoints two from control group in the previous studies}
-
-\item{end_2_std1}{Numeric. Std for endpoints two from control group in the previous studies}
-
-\item{end_1_m2}{Numeric. Sample mean for endpoints one from treatment group in the previous studies}
-
-\item{end_1_std2}{Numeric. Std for endpoints one from treatment group in the previous studies}
-
-\item{end_2_m2}{Numeric. Sample mean for endpoints two from treatment group in the previous studies}
-
-\item{end_2_std2}{Numeric. Std for endpoints two from treatment group in the previous studies}
 }
 \description{
 Three outcome approach decision making for count type of endpoints
 The limits are determined by the CLT only
+}
+\examples{
+library(TOAST)
+## Example code for two binary primary endpoint
+count_examples_ind <- three_outcomes_count_coprim(end_1_shape1 = 7, end_1_rate1 = 8.8,
+                                                  end_2_shape1 = 3, end_2_rate1 = 5,
+                                                  end_1_shape2 = 4, end_1_rate2 = 2,
+                                                 end_2_shape2 = 5, end_2_rate2 = 6,
+                        nrep = 300, NREP = 200, sample_size = 100, strategy = "conservative",
+                        LRV_1 = 1.0, LRV_2 = 0.1, independent = T,
+                        TV_1 = 1.204, TV_2 = 0.233, FGR = 0.2, FSR = 0.1, seed = 2024)
+count_examples_cor <- three_outcomes_count_coprim(end_1_shape1 = 7, end_1_rate1 = 8.8,
+                                                  end_2_shape1 = 3, end_2_rate1 = 5,
+                                                  end_1_shape2 = 4, end_1_rate2 = 2,
+                                                 end_2_shape2 = 5, end_2_rate2 = 6,
+                        nrep = 300, NREP = 200, sample_size = 100, strategy = "conservative",
+                        LRV_1 = 1.0, LRV_2 = 0.1, independent = F, correlation = 0.3,
+                        TV_1 = 1.204, TV_2 = 0.233, FGR = 0.2, FSR = 0.1, seed = 2024)
+
 }

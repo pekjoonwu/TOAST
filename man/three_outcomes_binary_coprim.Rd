@@ -17,10 +17,13 @@ three_outcomes_binary_coprim(
   sample_size,
   independent = T,
   correlation = NULL,
+  strategy = "conservative",
   LRV_1,
   LRV_2,
   TV_1,
   TV_2,
+  FGR = 0.2,
+  FSR = 0.1,
   seed
 )
 }
@@ -47,6 +50,8 @@ three_outcomes_binary_coprim(
 
 \item{correlation}{Numeric. correlation strength between two endpoints if they are correlated}
 
+\item{strategy}{Character. Two values: conservative or aggressive for decision criteria}
+
 \item{LRV_1}{Numeric. Lower reference value (treatment difference) for endpoint one}
 
 \item{LRV_2}{Numeric. Lower reference value (treatment difference) for endpoint two}
@@ -55,9 +60,30 @@ three_outcomes_binary_coprim(
 
 \item{TV_2}{Numeric. Target value (treatment difference) for endpoint two}
 
+\item{FGR}{Numeric. False go risk level}
+
+\item{FSR}{Numeric. False stop risk level}
+
 \item{seed}{Numeric. Random seed}
 }
 \description{
 Three outcome approach decision making for binary type of endpoints
 The limits are determined by the CLT only
+}
+\examples{
+library(TOAST)
+## Example code for two binary primary endpoint
+binary_examples_ind <- three_outcomes_binary_coprim(n1_prev = 50, n2_prev = 50,
+                        end_1_p1 = 0.1, end_2_p1 = 0.23,
+                        end_1_p2 = 0.2, end_2_p2 = 0.35,
+                        nrep = 300, NREP = 200, sample_size = 55, strategy = "conservative",
+                        LRV_1 = 0.05, LRV_2 = 0.08, independent = T,
+                        TV_1 = 0.1, TV_2 = 0.12, FGR = 0.2, FSR = 0.1, seed = 2024)
+binary_examples_cor <- three_outcomes_binary_coprim(n1_prev = 50, n2_prev = 50,
+                        end_1_p1 = 0.1, end_2_p1 = 0.23,
+                        end_1_p2 = 0.2, end_2_p2 = 0.35,
+                        nrep = 300, NREP = 200, sample_size = 55, strategy = "conservative",
+                        LRV_1 = 0.05, LRV_2 = 0.08, independent = F, correlation = 0.3,
+                        TV_1 = 0.1, TV_2 = 0.12, FGR = 0.2, FSR = 0.1, seed = 2024)
+
 }
