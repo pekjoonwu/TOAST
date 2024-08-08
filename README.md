@@ -26,7 +26,7 @@ library(TOAST)
 ?three_outcomes_cont_coprim ## For continuous + continuous endpoints
 ?three_outcomes_binary_coprim ## For binary + binary endpoints
 ?three_outcomes_count_coprim ## For count + count endpoints
-?three_outcomes_cont_binary_coprimary ## For count + binary endpoints
-?three_outcomes_cont_count_coprimary ## For count + count endpoints
+?three_outcomes_cont_binary_coprimary ## For continuous + binary endpoints
+?three_outcomes_cont_count_coprimary ## For continuous + count endpoints
 ?three_outcomes_bin_count_coprimary ## For binary + count endpoints
 ```
